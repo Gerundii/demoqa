@@ -7,7 +7,9 @@ repositories {
 }
 
 def selenideVersion = "7.3.2"
+def junitVersion = "5.10.2"
 
 dependencies {
-    testImplementation ("com.codeborne:selenide:$selenideVersion")
+    testImplementation "com.codeborne:selenide:$selenideVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter:$junitVersion"
 }
