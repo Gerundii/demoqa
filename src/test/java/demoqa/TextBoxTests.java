@@ -1,12 +1,12 @@
 package demoqa;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class TextBoxTests extends BaseTest{
     String name = "Alex Haikin";
@@ -33,6 +33,5 @@ public class TextBoxTests extends BaseTest{
         $(By.cssSelector("#output")).$(By.cssSelector("#permanentAddress")).shouldHave(text(permanentAddress));
         String result = $(By.cssSelector("#output")).$(By.cssSelector("#permanentAddress")).getText();
         System.out.println(result);
-
     }
 }
