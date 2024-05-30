@@ -15,7 +15,7 @@ public class TextBoxTests extends BaseTest{
     String permanentAddress = "France, Nàntt";
 
     @Test
-    void fillFormTest() {
+    void fillTextBoxFormTest() {
         open("/text-box");
         $(By.cssSelector(".text-center")).shouldHave(text("Text Box"));
 
