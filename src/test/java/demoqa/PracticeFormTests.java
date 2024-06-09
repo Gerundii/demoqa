@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -14,20 +15,52 @@ public class PracticeFormTests extends BaseTest{
     String phoneNumber = "89996663322";
     String currentAddress = "Russia, Moscow";
     String permanentAddress = "France, Nàntt";
+    String birthDate = "030";
+    String birthMonth = "April";
+    String birthYear = "1985";
     int randomNum = (int) (Math.random() * 3 + 1);;
 
     @Test
     void fillPracticeFormTest() {
         open("/automation-practice-form");
-        $(By.cssSelector(".text-center")).shouldHave(text("Practice Form"));
+        $(".text-center").shouldHave(text("Practice Form"));
 
-        $(By.cssSelector("#firstName")).setValue(firstName);
-        $(By.cssSelector("#lastName")).setValue(lastName);
-        $(By.cssSelector("#userEmail")).setValue(email);
-        $(By.cssSelector("#gender-radio-" + randomNum)).parent().click();
-        $(By.cssSelector("#gender-radio-" + randomNum)).shouldBe(selected);
-        $(By.cssSelector("#userNumber")).setValue(phoneNumber);
-        $(By.cssSelector("#dateOfBirthInput")).click();
+        //Name
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+
+        //Email
+        $("#userEmail").setValue(email);
+
+        //Gender
+        $("#genterWrapper").$(byText("Other")).click();
+        //$(By.cssSelector("#gender-radio-" + randomNum)).parent().click();
+
+        //Mobile
+        $("#userNumber").setValue(phoneNumber);
+
+        //Date of Birth
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption(birthMonth);
+        $(".react-datepicker__year-select").selectOption(birthYear);
+        $(".react-datepicker__day--" + birthDate + ":not(.react-datepicker__day--outside-month)").click();
+
+        //Subjects
+        $("#subjectsInput").sendKeys("a");
+        $(".subjects-auto-complete__menu").$(byText("Accounting")).click();
+        //$(By.cssSelector("label[for=\"hobbies-checkbox-2\"]")).click();
+        //$("#react-select-2-option-0").click();
+
+        //Hobbies
+        $("#hobbiesWrapper").$(byText("Music")).click();
+        //$("label[for*='hobbies-checkbox']").$(byText("Sports")).click();
+
+        //Picture
+        $("#uploadPicture").uploadFromClasspath("avatar.jpg");
+
+
+
+
         /*$(By.cssSelector("#currentAddress")).setValue(currentAddress);
         $(By.cssSelector("#permanentAddress")).setValue(permanentAddress);
         $(By.cssSelector("#submit")).scrollTo();
