@@ -1,21 +1,12 @@
 package demoqa;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-import dev.failsafe.internal.util.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormTests extends BaseTest{
+public class PracticeFormTests extends BaseTest {
     String firstName = "Alex";
     String lastName = "Haikin";
     String email = "al.hai@mail.ru";
@@ -60,8 +51,6 @@ public class PracticeFormTests extends BaseTest{
         //Subjects
         $("#subjectsInput").sendKeys(subject);
         $$(".subjects-auto-complete__option").findBy(text(subject)).click();
-        //$(".subjects-auto-complete__menu-list").$(byText("Accounting")).click();
-        //$("#react-select-2-option-0").click();
 
         //Hobbies
         $("#hobbiesWrapper").$(byText(hobbie)).click();
