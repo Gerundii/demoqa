@@ -1,29 +1,42 @@
 package demoqa;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import dev.failsafe.internal.util.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeFormTests extends BaseTest{
     String firstName = "Alex";
     String lastName = "Haikin";
     String email = "al.hai@mail.ru";
-    String phoneNumber = "89996663322";
-    String currentAddress = "Russia, Moscow";
-    String permanentAddress = "France, Nàntt";
-    String birthDate = "030";
+    String gender = "Other";
+    String phoneNumber = "9996663322";
+    String birthDate = "30";
     String birthMonth = "April";
     String birthYear = "1985";
-    int randomNum = (int) (Math.random() * 3 + 1);;
+    String subject = "Accounting";
+    String hobbie = "Music";
+    String picture = "avatar.jpg";
+    String currentAddress = "Russia, Moscow";
+    String state = "Haryana";
+    String city = "Karnal";
 
     @Test
     void fillPracticeFormTest() {
         open("/automation-practice-form");
+
         $(".text-center").shouldHave(text("Practice Form"));
+        $(".practice-form-wrapper h5").shouldHave(text("Student Registration Form"));
 
         //Name
         $("#firstName").setValue(firstName);
@@ -33,8 +46,7 @@ public class PracticeFormTests extends BaseTest{
         $("#userEmail").setValue(email);
 
         //Gender
-        $("#genterWrapper").$(byText("Other")).click();
-        //$(By.cssSelector("#gender-radio-" + randomNum)).parent().click();
+        $("#genterWrapper").$(byText(gender)).click();
 
         //Mobile
         $("#userNumber").setValue(phoneNumber);
@@ -43,35 +55,44 @@ public class PracticeFormTests extends BaseTest{
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(birthMonth);
         $(".react-datepicker__year-select").selectOption(birthYear);
-        $(".react-datepicker__day--" + birthDate + ":not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__day--0" + birthDate + ":not(.react-datepicker__day--outside-month)").click();
 
         //Subjects
-        $("#subjectsInput").sendKeys("a");
-        $(".subjects-auto-complete__menu").$(byText("Accounting")).click();
-        //$(By.cssSelector("label[for=\"hobbies-checkbox-2\"]")).click();
+        $("#subjectsInput").sendKeys(subject);
+        $$(".subjects-auto-complete__option").findBy(text(subject)).click();
+        //$(".subjects-auto-complete__menu-list").$(byText("Accounting")).click();
         //$("#react-select-2-option-0").click();
 
         //Hobbies
-        $("#hobbiesWrapper").$(byText("Music")).click();
-        //$("label[for*='hobbies-checkbox']").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText(hobbie)).click();
 
         //Picture
-        $("#uploadPicture").uploadFromClasspath("avatar.jpg");
+        $("#uploadPicture").uploadFromClasspath(picture);
 
+        //Current Address
+        $("#currentAddress").setValue(currentAddress);
 
+        //State
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(state)).click();
 
+        //Cite
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText(city)).click();
 
-        /*$(By.cssSelector("#currentAddress")).setValue(currentAddress);
-        $(By.cssSelector("#permanentAddress")).setValue(permanentAddress);
-        $(By.cssSelector("#submit")).scrollTo();
-        $(By.cssSelector("#submit")).click();*/
+        //Submit
+        $("#submit").click();
 
-        /*$(By.cssSelector("#output")).shouldBe(visible);
-        $(By.cssSelector("#output")).$(By.cssSelector("#name")).shouldHave(text(name));
-        $(By.cssSelector("#output")).$(By.cssSelector("#email")).shouldHave(text(email));
-        $(By.cssSelector("#output")).$(By.cssSelector("#currentAddress")).shouldHave(text(currentAddress));
-        $(By.cssSelector("#output")).$(By.cssSelector("#permanentAddress")).shouldHave(text(permanentAddress));
-        String result = $(By.cssSelector("#output")).$(By.cssSelector("#permanentAddress")).getText();
-        System.out.println(result);*/
+        //Assertions
+        $(".table-responsive").$(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
+        $(".table-responsive").$(byText("Student Email")).sibling(0).shouldHave(text(email));
+        $(".table-responsive").$(byText("Gender")).sibling(0).shouldHave(text(gender));
+        $(".table-responsive").$(byText("Mobile")).sibling(0).shouldHave(text(phoneNumber));
+        $(".table-responsive").$(byText("Date of Birth")).sibling(0).shouldHave(text(birthDate + " " + birthMonth + "," + birthYear));
+        $(".table-responsive").$(byText("Subjects")).sibling(0).shouldHave(text(subject));
+        $(".table-responsive").$(byText("Hobbies")).sibling(0).shouldHave(text(hobbie));
+        $(".table-responsive").$(byText("Picture")).sibling(0).shouldHave(text("avatar.jpg"));
+        $(".table-responsive").$(byText("Address")).sibling(0).shouldHave(text(currentAddress));
+        $(".table-responsive").$(byText("State and City")).sibling(0).shouldHave(text(state + " " + city));
     }
 }
