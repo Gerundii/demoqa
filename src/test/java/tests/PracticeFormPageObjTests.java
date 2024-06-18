@@ -24,23 +24,17 @@ public class PracticeFormPageObjTests extends BaseTest {
 
     @Test
     void fillPracticeFormTest() {
-        open("/automation-practice-form");
 
-        $(".text-center").shouldHave(text("Practice Form"));
-        $(".practice-form-wrapper h5").shouldHave(text("Student Registration Form"));
-
+        registrationPage.openPage();
         //Name
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-
+        registrationPage.setFirstName(firstName);
+        registrationPage.setLastName(lastName);
         //Email
-        $("#userEmail").setValue(email);
-
+        registrationPage.setEmail(email);
         //Gender
-        $("#genterWrapper").$(byText(gender)).click();
-
+        registrationPage.setGender(gender);
         //Mobile
-        $("#userNumber").setValue(phoneNumber);
+        registrationPage.setMobile(phoneNumber);
 
         //Date of Birth
         $("#dateOfBirthInput").click();
