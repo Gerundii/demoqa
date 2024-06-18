@@ -1,1 +1,1 @@
-# demoqa
+# tests
