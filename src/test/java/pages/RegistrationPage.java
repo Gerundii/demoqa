@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,8 +10,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
-    CalendarComponent calendarComponent = new CalendarComponent();
+    private CalendarComponent registrationCalendar = new CalendarComponent();
+    private ResultComponent registrationResult = new ResultComponent();
     private final String TITLE_TEXT = "Student Registration Form";
+    private final String SUCCESS_REG_TEXT = "Thanks for submitting the form";
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement emailInput = $("#userEmail");
@@ -47,6 +50,10 @@ public class RegistrationPage {
 
     public void setBirthDate(String day, String month, String year) {
         birthDateInput.click();
-        calendarComponent.setDate(day, month, year);
+        registrationCalendar.setDate(day, month, year);
+    }
+
+    public void verifyRegistrationResultAppear() {
+        registrationResult.verifyResultComponentAppears(SUCCESS_REG_TEXT);
     }
 }
