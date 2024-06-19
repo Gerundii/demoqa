@@ -63,6 +63,8 @@ public class PracticeFormPageObjTests extends BaseTest {
         //Submit
         $("#submit").click();
 
+        registrationPage.verifyRegistrationResultAppear();
+
         //Assertions
         $(".table-responsive").$(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
         $(".table-responsive").$(byText("Student Email")).sibling(0).shouldHave(text(email));
@@ -71,7 +73,7 @@ public class PracticeFormPageObjTests extends BaseTest {
         $(".table-responsive").$(byText("Date of Birth")).sibling(0).shouldHave(text(birthDate + " " + birthMonth + "," + birthYear));
         $(".table-responsive").$(byText("Subjects")).sibling(0).shouldHave(text(subject));
         $(".table-responsive").$(byText("Hobbies")).sibling(0).shouldHave(text(hobbie));
-        $(".table-responsive").$(byText("Picture")).sibling(0).shouldHave(text("avatar.jpg"));
+        $(".table-responsive").$(byText("Picture")).sibling(0).shouldHave(text(picture));
         $(".table-responsive").$(byText("Address")).sibling(0).shouldHave(text(currentAddress));
         $(".table-responsive").$(byText("State and City")).sibling(0).shouldHave(text(state + " " + city));
     }
