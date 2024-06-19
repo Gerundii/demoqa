@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -8,12 +9,14 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
+    CalendarComponent calendarComponent = new CalendarComponent();
     private final String TITLE_TEXT = "Student Registration Form";
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
     private SelenideElement emailInput = $("#userEmail");
     private SelenideElement genderInput = $("#genterWrapper");
     private SelenideElement mobileInput = $("#userNumber");
+    private SelenideElement birthDateInput = $("#dateOfBirthInput");
 
     public void openPage() {
         open("/automation-practice-form");
@@ -40,5 +43,10 @@ public class RegistrationPage {
 
     public void setMobile(String phoneNumber) {
         mobileInput.setValue(phoneNumber);
+    }
+
+    public void setBirthDate(String day, String month, String year) {
+        birthDateInput.click();
+        calendarComponent.setDate(day, month, year);
     }
 }
