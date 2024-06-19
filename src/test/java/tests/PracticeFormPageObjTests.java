@@ -37,10 +37,7 @@ public class PracticeFormPageObjTests extends BaseTest {
         registrationPage.setMobile(phoneNumber);
 
         //Date of Birth
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(birthMonth);
-        $(".react-datepicker__year-select").selectOption(birthYear);
-        $(".react-datepicker__day--0" + birthDate + ":not(.react-datepicker__day--outside-month)").click();
+        registrationPage.setBirthDate(birthDate, birthMonth, birthYear);
 
         //Subjects
         $("#subjectsInput").sendKeys(subject);
