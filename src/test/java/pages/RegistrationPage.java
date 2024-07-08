@@ -1,13 +1,13 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.ResultComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
     private CalendarComponent registrationCalendar = new CalendarComponent();
@@ -20,6 +20,15 @@ public class RegistrationPage {
     private SelenideElement genderInput = $("#genterWrapper");
     private SelenideElement mobileInput = $("#userNumber");
     private SelenideElement birthDateInput = $("#dateOfBirthInput");
+    private SelenideElement subjectInput = $("#subjectsInput");
+    private ElementsCollection subjectList = $$(".subjects-auto-complete__option");
+    private SelenideElement hobbyInput = $("#hobbiesWrapper");
+    private SelenideElement pictureInput = $("#uploadPicture");
+    private SelenideElement currentAddressInput = $("#currentAddress");
+    private SelenideElement stateInput = $("#state");
+    private SelenideElement cityInput = $("#city");
+    private SelenideElement submitInput = $("#submit");
+
 
     public void openPage() {
         open("/automation-practice-form");
@@ -52,6 +61,39 @@ public class RegistrationPage {
         birthDateInput.click();
         registrationCalendar.setDate(day, month, year);
     }
+
+    public void setSubject(String subject) {
+        subjectInput.sendKeys(subject);
+        subjectList.findBy(text(subject)).click();
+    }
+
+    public void setHobby(String hobby) {
+        hobbyInput.$(byText(hobby)).click();
+    }
+
+    public void setPicture(String picture) {
+        pictureInput.uploadFromClasspath(picture);
+    }
+
+    public void setCurrentAddress(String currentAddress) {
+        currentAddressInput.setValue(currentAddress);
+    }
+
+    public void setState(String state) {
+        stateInput.click();
+        stateInput.$(byText(state)).click();
+    }
+
+    public void setCity(String city) {
+        cityInput.click();
+        cityInput.$(byText(city)).click();
+    }
+
+    public void submit() {
+        submitInput.click();
+    }
+
+
 
     public void verifyRegistrationResultAppear() {
         registrationResult.verifyResultComponentAppears(SUCCESS_REG_TEXT);
