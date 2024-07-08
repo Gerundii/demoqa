@@ -16,7 +16,7 @@ public class PracticeFormPageObjTests extends BaseTest {
     String birthMonth = "April";
     String birthYear = "1985";
     String subject = "Accounting";
-    String hobbie = "Music";
+    String hobby = "Music";
     String picture = "avatar.jpg";
     String currentAddress = "Russia, Moscow";
     String state = "Haryana";
@@ -40,28 +40,25 @@ public class PracticeFormPageObjTests extends BaseTest {
         registrationPage.setBirthDate(birthDate, birthMonth, birthYear);
 
         //Subjects
-        $("#subjectsInput").sendKeys(subject);
-        $$(".subjects-auto-complete__option").findBy(text(subject)).click();
+        registrationPage.setSubject(subject);
 
         //Hobbies
-        $("#hobbiesWrapper").$(byText(hobbie)).click();
+        registrationPage.setHobby(hobby);
 
         //Picture
-        $("#uploadPicture").uploadFromClasspath(picture);
+        registrationPage.setPicture(picture);
 
         //Current Address
-        $("#currentAddress").setValue(currentAddress);
+        registrationPage.setCurrentAddress(currentAddress);
 
         //State
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText(state)).click();
+        registrationPage.setState(state);
 
-        //Cite
-        $("#city").click();
-        $("#stateCity-wrapper").$(byText(city)).click();
+        //City
+        registrationPage.setCity(city);
 
         //Submit
-        $("#submit").click();
+        registrationPage.submit();
 
         registrationPage.verifyRegistrationResultAppear();
 
@@ -72,7 +69,7 @@ public class PracticeFormPageObjTests extends BaseTest {
         $(".table-responsive").$(byText("Mobile")).sibling(0).shouldHave(text(phoneNumber));
         $(".table-responsive").$(byText("Date of Birth")).sibling(0).shouldHave(text(birthDate + " " + birthMonth + "," + birthYear));
         $(".table-responsive").$(byText("Subjects")).sibling(0).shouldHave(text(subject));
-        $(".table-responsive").$(byText("Hobbies")).sibling(0).shouldHave(text(hobbie));
+        $(".table-responsive").$(byText("Hobbies")).sibling(0).shouldHave(text(hobby));
         $(".table-responsive").$(byText("Picture")).sibling(0).shouldHave(text(picture));
         $(".table-responsive").$(byText("Address")).sibling(0).shouldHave(text(currentAddress));
         $(".table-responsive").$(byText("State and City")).sibling(0).shouldHave(text(state + " " + city));
