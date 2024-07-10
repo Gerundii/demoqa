@@ -97,8 +97,6 @@ public class RegistrationPage {
         submitInput.click();
     }
 
-
-
     public void verifyRegistrationResultAppear() {
         registrationResult.verifyResultComponentAppears(SUCCESS_REG_TEXT);
     }
