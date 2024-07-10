@@ -12,7 +12,8 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationPage {
     private CalendarComponent registrationCalendar = new CalendarComponent();
     private ResultComponent registrationResult = new ResultComponent();
-    private final String TITLE_TEXT = "Student Registration Form";
+    private final String PAGE_TITLE_TEXT = "Practice Form";
+    private final String FORM_TITLE_TEXT = "Student Registration Form";
     private final String SUCCESS_REG_TEXT = "Thanks for submitting the form";
     private SelenideElement firstNameInput = $("#firstName");
     private SelenideElement lastNameInput = $("#lastName");
@@ -33,8 +34,8 @@ public class RegistrationPage {
     public void openPage() {
         open("/automation-practice-form");
 
-        $(".text-center").shouldHave(text("Practice Form"));
-        $(".practice-form-wrapper h5").shouldHave(text(TITLE_TEXT));
+        $(".text-center").shouldHave(text(PAGE_TITLE_TEXT));
+        $(".practice-form-wrapper h5").shouldHave(text(FORM_TITLE_TEXT));
     }
 
     public void setFirstName(String firstName) {
