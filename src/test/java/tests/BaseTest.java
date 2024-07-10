@@ -3,9 +3,11 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import pages.RegistrationPage;
+import pages.RegistrationPageWithFluent;
 
 public class BaseTest {
     RegistrationPage registrationPage = new RegistrationPage();
+    RegistrationPageWithFluent registrationPageWithFluent = new RegistrationPageWithFluent();
 
     @BeforeAll
     static void before() {
