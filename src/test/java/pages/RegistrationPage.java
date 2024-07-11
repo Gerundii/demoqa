@@ -100,4 +100,8 @@ public class RegistrationPage {
     public void verifyRegistrationResultAppear() {
         registrationResult.verifyResultComponentAppears(SUCCESS_REG_TEXT);
     }
+
+    public void verifyRegistrationResult (String key, String value) {
+        registrationResult.verifyResult(key, value);
+    }
 }

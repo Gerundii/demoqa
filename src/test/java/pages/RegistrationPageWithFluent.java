@@ -115,4 +115,9 @@ public class RegistrationPageWithFluent {
         registrationResult.verifyResultComponentAppears(SUCCESS_REG_TEXT);
         return this;
     }
+
+    public RegistrationPageWithFluent verifyRegistrationResult (String key, String value) {
+        registrationResult.verifyResult(key, value);
+        return this;
+    }
 }
