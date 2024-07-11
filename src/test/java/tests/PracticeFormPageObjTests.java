@@ -26,38 +26,18 @@ public class PracticeFormPageObjTests extends BaseTest {
     void fillPracticeFormTest() {
 
         registrationPage.openPage();
-        //Name
         registrationPage.setFirstName(firstName);
         registrationPage.setLastName(lastName);
-        //Email
         registrationPage.setEmail(email);
-        //Gender
         registrationPage.setGender(gender);
-        //Mobile
         registrationPage.setMobile(phoneNumber);
-
-        //Date of Birth
         registrationPage.setBirthDate(birthDate, birthMonth, birthYear);
-
-        //Subjects
         registrationPage.setSubject(subject);
-
-        //Hobbies
         registrationPage.setHobby(hobby);
-
-        //Picture
         registrationPage.setPicture(picture);
-
-        //Current Address
         registrationPage.setCurrentAddress(currentAddress);
-
-        //State
         registrationPage.setState(state);
-
-        //City
         registrationPage.setCity(city);
-
-        //Submit
         registrationPage.submit();
 
         registrationPage.verifyRegistrationResultAppear();
@@ -91,8 +71,9 @@ public class PracticeFormPageObjTests extends BaseTest {
                 .setCurrentAddress(currentAddress)
                 .setState(state)
                 .setCity(city)
-                .submit()
-                .verifyRegistrationResultAppear();
+                .submit();
+
+        registrationPageWithFluent.verifyRegistrationResultAppear();
 
         //Assertions
         $(".table-responsive").$(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
