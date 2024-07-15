@@ -10,6 +10,7 @@ repositories {
 def selenideVersion = "7.3.2"
 def junitVersion = "5.10.2"
 def slf4jSimpleVersion = "2.0.13"
+def datafaker = "2.3.1"
 
 dependencies {
     testImplementation "com.codeborne:selenide:$selenideVersion"
@@ -17,6 +18,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testRuntimeOnly "org.junit.platform:junit-platform-launcher"
     testImplementation "org.slf4j:slf4j-simple:$slf4jSimpleVersion"
+    testImplementation "net.datafaker:datafaker:$datafaker"
 }
 
 test {
