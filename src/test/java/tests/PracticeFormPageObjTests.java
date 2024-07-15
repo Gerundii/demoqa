@@ -2,28 +2,26 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static utils.PracticeFormDatafaker.*;
 
 public class PracticeFormPageObjTests extends BaseTest {
-    String firstName = "Alex";
-    String lastName = "Haikin";
-    String email = "al.hai@mail.ru";
-    String gender = "Other";
-    String phoneNumber = "9996663322";
-    String birthDate = "30";
-    String birthMonth = "April";
-    String birthYear = "1985";
-    String subject = "Accounting";
-    String hobby = "Music";
+    String firstName = pfData.generateFirstName();
+    String lastName = pfData.generateLastName();
+    String email = pfData.generateEmail();
+    String gender = pfData.generateGender();
+    String phoneNumber = pfData.generatePhoneNumber();
+    String birthDate = pfData.generateBirthDate();
+    String birthMonth = pfData.generateBirthMonth();
+    String birthYear = pfData.generateBirthYear();
+    String subject = pfData.generateSubject();
+    String hobby = pfData.generateHobby();
     String picture = "avatar.jpg";
-    String currentAddress = "Russia, Moscow";
-    String state = "Haryana";
-    String city = "Karnal";
+    String currentAddress = pfData.generateCurrentAddress();
+    String state = pfData.generateState();
+    String city = pfData.generateCity(state);
 
     @Test
-    void fillPracticeFormTest() {
+    void fillPracticeFormTest() throws InterruptedException {
 
         registrationPage.openPage();
         registrationPage.setFirstName(firstName);
