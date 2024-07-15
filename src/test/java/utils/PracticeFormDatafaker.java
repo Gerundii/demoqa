@@ -2,68 +2,90 @@ package utils;
 
 import net.datafaker.Faker;
 
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-public class Datafaker {
-    static Faker faker = new Faker(new Locale("en"));
+public class PracticeFormDatafaker {
+    Faker faker = new Faker(new Locale("en"));
 
     String[] genders = {"Male", "Female", "Other"};
     String[] subjects = {"Maths", "Art", "Biology", "Civics", "Physics"};
-    String[] hobbies = {"Male", "Female", "Other"};
+    String[] hobbies = {"Sports", "Reading", "Music"};
+    String[] state = {"NCR", "Uttar Pradesh", "Haryana", "Rajasthan"};
+    String[] cityNCR = {"Delhi", "Gurgaon", "Noida"};
+    String[] cityUttar = {"Agra", "Lucknow", "Merrut"};
+    String[] cityHaryana = {"Karnal", "Panipat"};
+    String[] cityRajasthan = {"Jaipur", "Jaiselmer"};
 
-    public static String generateFirstName(){
+    String[] birthDate = faker.timeAndDate().birthday(20, 30, "dd MMMM YYYY").split(" ");
+
+    public void main(String[] args) {
+    }
+
+    public String generateFirstName(){
         return faker.name().firstName();
     }
 
-    public static String generateLastName(){
+    public String generateLastName(){
         return faker.name().lastName();
     }
 
-    public static String generateEmail(){
+    public String generateEmail(){
         return faker.internet().emailAddress();
     }
 
-    public static String generateGender(){
-        return faker.internet().emailAddress();
+    public String generateGender(){
+        return faker.options().option(genders);
     }
 
-    public static String generatePhoneNumber(){
-        return faker.internet().emailAddress();
+    public String generatePhoneNumber(){
+        return String.valueOf(faker.number().numberBetween(9010000000L, 9999999999L));
     }
 
-    public static String generateBirthDate(){
-        return faker.internet().emailAddress();
+    public String generateBirthDate(){
+        return birthDate[0];
     }
 
-    public static String generateBirthMonth(){
-        return faker.internet().emailAddress();
+    public String generateBirthMonth(){
+        return birthDate[1];
     }
 
-    public static String generateBirthYear(){
-        return faker.internet().emailAddress();
+    public String generateBirthYear(){
+        return birthDate[2];
     }
 
-    public static String generateSubject(){
-        return faker.internet().emailAddress();
+    public String generateSubject(){
+        return faker.options().option(subjects);
     }
 
-    public static String generateHobby(){
-        return faker.internet().emailAddress();
+    public String generateHobby(){
+        return faker.options().option(hobbies);
     }
 
-    public static String generatePicture(){
-        return faker.internet().emailAddress();
+    public String generateCurrentAddress(){
+        return faker.address().fullAddress();
     }
 
-    public static String generateCurrentAddress(){
-        return faker.internet().emailAddress();
+    public String generateState(){
+        return faker.options().option(state);
     }
 
-    public static String generateState(){
-        return faker.internet().emailAddress();
-    }
-
-    public static String generateCity(){
-        return faker.internet().emailAddress();
+    public String generateCity(String state){
+        String city = null;
+        if (state.equals("NCR")) {
+            city = faker.options().option(cityNCR);
+        }
+        else if (state.equals("Uttar Pradesh")) {
+            city = faker.options().option(cityUttar);
+        }
+        else if (state.equals("Haryana")) {
+            city = faker.options().option(cityHaryana);
+        }
+        else if (state.equals("Rajasthan")) {
+            city = faker.options().option(cityRajasthan);
+        }
+        return city;
     }
 }
