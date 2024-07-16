@@ -28,7 +28,7 @@ public class PracticeFormPageObjTests extends BaseTest {
             .build();
 
     @Test
-    void fillPracticeFormTest() throws InterruptedException {
+    void fillPracticeFormTest() {
 
         registrationPage.openPage();
         registrationPage.setFirstName(student.getFirstName());

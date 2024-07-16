@@ -17,7 +17,7 @@ public class StudentData {
     String birthYear;
     String subject;
     String hobby;
-    String picture = "avatar.jpg";
+    String picture;
     String currentAddress;
     String state;
     String city;
