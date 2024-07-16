@@ -9,7 +9,6 @@ import utils.PracticeFormDatafaker;
 public class BaseTest {
     RegistrationPage registrationPage = new RegistrationPage();
     RegistrationPageWithFluent registrationPageWithFluent = new RegistrationPageWithFluent();
-    PracticeFormDatafaker pfData = new PracticeFormDatafaker();
 
     @BeforeAll
     static void before() {
