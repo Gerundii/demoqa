@@ -17,6 +17,7 @@ public class PracticeFormDatafaker {
     private final String[] CITYRajasthan = {"Jaipur", "Jaiselmer"};
 
     String[] birthDay = generateBirthDay();
+    String[] stateAndCity = generateStateAndCity();
 
     public void main(String[] args) {
     }
@@ -69,12 +70,14 @@ public class PracticeFormDatafaker {
         return faker.address().fullAddress();
     }
 
-    public String generateState() {
-        return faker.options().option(STATE);
-    }
+    public String[] generateStateAndCity() {
+        String[] stateAndCity = new String[2];
 
-    public String generateCity(String state) {
+        String state = faker.options().option(STATE);
+        stateAndCity[0] = state;
+
         String city = null;
+
         if (state.equals("NCR")) {
             city = faker.options().option(CITYNCR);
         } else if (state.equals("Uttar Pradesh")) {
@@ -84,6 +87,17 @@ public class PracticeFormDatafaker {
         } else if (state.equals("Rajasthan")) {
             city = faker.options().option(CITYRajasthan);
         }
-        return city;
+
+        stateAndCity[1] = city;
+
+        return stateAndCity;
+    }
+
+    public String generateState() {
+        return stateAndCity[0];
+    }
+
+    public String generateCity() {
+        return stateAndCity[1];
     }
 }
