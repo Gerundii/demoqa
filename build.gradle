@@ -20,7 +20,11 @@ dependencies {
     testRuntimeOnly "org.junit.platform:junit-platform-launcher"
     testImplementation "org.slf4j:slf4j-simple:$slf4jSimpleVersion"
     testImplementation "net.datafaker:datafaker:$datafaker"
-    testCompileOnly "org.projectlombok:lombok:$lombok"
+
+    compileOnly "org.projectlombok:lombok:$lombok"
+    annotationProcessor "org.projectlombok:$lombok"
+
+    testCompileOnly "org.projectlombok:$lombok"
     testAnnotationProcessor "org.projectlombok:$lombok"
 }
 
